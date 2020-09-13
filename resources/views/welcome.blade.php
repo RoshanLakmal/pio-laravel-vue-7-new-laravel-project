@@ -15,8 +15,7 @@
 
 <body>
     <div id="app">
-        Test
-        <button type="button" class="btn btn-primary">Blue</button>
+        <router-view></router-view>
     </div>
 </body>
 
