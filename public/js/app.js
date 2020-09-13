@@ -37550,9 +37550,11 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("router-link", { attrs: { to: "/" } }, [_vm._v("Home")]),
+      _c("router-link", { attrs: { to: { name: "home" } } }, [_vm._v("Home")]),
       _vm._v(" "),
-      _c("router-link", { attrs: { to: "/second" } }, [_vm._v("Second")]),
+      _c("router-link", { attrs: { to: { name: "second" } } }, [
+        _vm._v("Second")
+      ]),
       _vm._v(" "),
       _c("router-view")
     ],
