@@ -6,7 +6,7 @@
         <div class="col" v-for="(bookable,columns) in bookablesInRow(row)" :key="'row'+row+columns">
           <bookable-list-item
             :item-title="bookable.title"
-            :item-content="bookable.content"
+            :item-description="bookable.description"
             :price="1000"
           ></bookable-list-item>
         </div>
@@ -65,38 +65,44 @@ export default {
   //   },
   created() {
     this.loading = true;
-
-    const p = new Promise((resolve, reject) => {
-      console.log(resolve);
-      console.log(reject);
-      setTimeout(() => resolve("Hello"), 3000); // resove promise
-      // setTimeout(() => reject("Hello"), 3000); // reject promise
-    })
-      .then((result) => "Hello agin" + result)
-      .then((result) => console.log(`Success ${result}`))
-      .catch((result) => console.log(`Error ${result}`));
-    console.log(p);
-    setTimeout(() => {
-      this.bookables = [
-        {
-          title: "Cheap Villa 1",
-          content: "A very cheap villa 1",
-        },
-        {
-          title: "Cheap Villa 2",
-          content: "A very cheap villa 2",
-        },
-        {
-          title: "Cheap Villa 1",
-          content: "A very cheap villa 1",
-        },
-        {
-          title: "Cheap Villa 2",
-          content: "A very cheap villa 2",
-        },
-      ];
+    const request = axios.get("/api/bookables").then((response) => {
+      this.bookables = response.data;
       this.loading = false;
-    }, 2000);
+    });
+    console.log(request);
+    // const p = new Promise((resolve, reject) => {
+    //   console.log(resolve);
+    //   console.log(reject);
+    //   setTimeout(() => resolve("Hello"), 3000); // resove promise
+    //   // setTimeout(() => reject("Hello"), 3000); // reject promise
+    // })
+    //   .then((result) => "Hello agin" + result)
+    //   .then((result) => console.log(`Success ${result}`))
+    //   .catch((result) => console.log(`Error ${result}`));
+    // console.log(p);
+
+    // setTimeout(() => {
+    //   this.bookables = [
+    //     {
+    //       title: "Cheap Villa 1",
+    //       content: "A very cheap villa 1",
+    //     },
+    //     {
+    //       title: "Cheap Villa 2",
+    //       content: "A very cheap villa 2",
+    //     },
+    //     {
+    //       title: "Cheap Villa 1",
+    //       content: "A very cheap villa 1",
+    //     },
+    //     {
+    //       title: "Cheap Villa 2",
+    //       content: "A very cheap villa 2",
+    //     },
+    //   ];
+    //   this.loading = false;
+    // }, 2000);
+
     // console.log("created");
     // console.log(this.bookable1);
     // console.log(this.bookable2);

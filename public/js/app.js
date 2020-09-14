@@ -1919,7 +1919,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     itemTitle: String,
-    itemContent: String,
+    itemDescription: String,
     price: Number
   }
 });
@@ -2002,37 +2002,42 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.loading = true;
-    var p = new Promise(function (resolve, reject) {
-      console.log(resolve);
-      console.log(reject);
-      setTimeout(function () {
-        return resolve("Hello");
-      }, 3000); // resove promise
-      // setTimeout(() => reject("Hello"), 3000); // reject promise
-    }).then(function (result) {
-      return "Hello agin" + result;
-    }).then(function (result) {
-      return console.log("Success ".concat(result));
-    })["catch"](function (result) {
-      return console.log("Error ".concat(result));
-    });
-    console.log(p);
-    setTimeout(function () {
-      _this.bookables = [{
-        title: "Cheap Villa 1",
-        content: "A very cheap villa 1"
-      }, {
-        title: "Cheap Villa 2",
-        content: "A very cheap villa 2"
-      }, {
-        title: "Cheap Villa 1",
-        content: "A very cheap villa 1"
-      }, {
-        title: "Cheap Villa 2",
-        content: "A very cheap villa 2"
-      }];
+    var request = axios.get("/api/bookables").then(function (response) {
+      _this.bookables = response.data;
       _this.loading = false;
-    }, 2000); // console.log("created");
+    });
+    console.log(request); // const p = new Promise((resolve, reject) => {
+    //   console.log(resolve);
+    //   console.log(reject);
+    //   setTimeout(() => resolve("Hello"), 3000); // resove promise
+    //   // setTimeout(() => reject("Hello"), 3000); // reject promise
+    // })
+    //   .then((result) => "Hello agin" + result)
+    //   .then((result) => console.log(`Success ${result}`))
+    //   .catch((result) => console.log(`Error ${result}`));
+    // console.log(p);
+    // setTimeout(() => {
+    //   this.bookables = [
+    //     {
+    //       title: "Cheap Villa 1",
+    //       content: "A very cheap villa 1",
+    //     },
+    //     {
+    //       title: "Cheap Villa 2",
+    //       content: "A very cheap villa 2",
+    //     },
+    //     {
+    //       title: "Cheap Villa 1",
+    //       content: "A very cheap villa 1",
+    //     },
+    //     {
+    //       title: "Cheap Villa 2",
+    //       content: "A very cheap villa 2",
+    //     },
+    //   ];
+    //   this.loading = false;
+    // }, 2000);
+    // console.log("created");
     // console.log(this.bookable1);
     // console.log(this.bookable2);
     // setTimeout(() => {
@@ -37733,7 +37738,9 @@ var render = function() {
     _c("div", { staticClass: "card-body" }, [
       _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.itemTitle))]),
       _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [_vm._v(_vm._s(_vm.itemContent))])
+      _c("p", { staticClass: "card-text" }, [
+        _vm._v(_vm._s(_vm.itemDescription))
+      ])
     ])
   ])
 }
@@ -37777,7 +37784,7 @@ var render = function() {
                       _c("bookable-list-item", {
                         attrs: {
                           "item-title": bookable.title,
-                          "item-content": bookable.content,
+                          "item-description": bookable.description,
                           price: 1000
                         }
                       })
