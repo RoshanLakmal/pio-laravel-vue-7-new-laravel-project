@@ -3,7 +3,11 @@
     <div v-if="loading">Data is loading...</div>
     <div v-else>
       <div class="row mb-4" v-for="row in rows" :key="'row'+row">
-        <div class="col" v-for="(bookable,columns) in bookablesInRow(row)" :key="'row'+row+columns">
+        <div
+          class="col d-flex align-items-stretch"
+          v-for="(bookable,columns) in bookablesInRow(row)"
+          :key="'row'+row+columns"
+        >
           <bookable-list-item
             :item-title="bookable.title"
             :item-description="bookable.description"
@@ -67,9 +71,10 @@ export default {
     this.loading = true;
     const request = axios.get("/api/bookables").then((response) => {
       this.bookables = response.data;
+      // this.bookables.push({ title: "x", description: "x" });
       this.loading = false;
     });
-    console.log(request);
+    // console.log(request);
     // const p = new Promise((resolve, reject) => {
     //   console.log(resolve);
     //   console.log(reject);
