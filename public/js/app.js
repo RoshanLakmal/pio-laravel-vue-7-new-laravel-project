@@ -1946,10 +1946,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     BookableListItem: _BookableListItem__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      bookable1: {
+        title: "Cheap Villa 1",
+        content: "A very cheap villa 1"
+      },
+      bookable2: {
+        title: "Cheap Villa 2",
+        content: "A very cheap villa 2"
+      }
+    };
+  },
+  beforeCreate: function beforeCreate() {
+    console.log("before create");
+  },
+  created: function created() {
+    console.log("created");
+  },
+  beforeMount: function beforeMount() {
+    console.log("before mount");
+  },
+  mounted: function mounted() {
+    console.log("mounted");
+  },
+  beforeDestroy: function beforeDestroy() {
+    console.log("before destroy");
+  },
+  destroyed: function destroyed() {
+    console.log("destroy");
   }
 });
 
@@ -37657,16 +37691,16 @@ var render = function() {
     [
       _c("bookable-list-item", {
         attrs: {
-          "item-title": "Cheap Villa",
-          "item-content": "A very cheap villa",
+          "item-title": _vm.bookable1.title,
+          "item-content": _vm.bookable1.content,
           price: 1000
         }
       }),
       _vm._v(" "),
       _c("bookable-list-item", {
         attrs: {
-          "item-title": "Cheap Villa 2",
-          "item-content": "A very cheap villa 2",
+          "item-title": _vm.bookable2.title,
+          "item-content": _vm.bookable2.content,
           price: 1500
         }
       })
