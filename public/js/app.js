@@ -1967,24 +1967,32 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  beforeCreate: function beforeCreate() {
-    console.log("before create");
-  },
+  //   beforeCreate() {
+  //     console.log("before create");
+  //   },
   created: function created() {
+    var _this = this;
+
     console.log("created");
-  },
-  beforeMount: function beforeMount() {
-    console.log("before mount");
-  },
-  mounted: function mounted() {
-    console.log("mounted");
-  },
-  beforeDestroy: function beforeDestroy() {
-    console.log("before destroy");
-  },
-  destroyed: function destroyed() {
-    console.log("destroy");
-  }
+    console.log(this.bookable1);
+    console.log(this.bookable2);
+    setTimeout(function () {
+      _this.bookable1.title = "Expensive Villa";
+      _this.bookable2.title = "Very Expensive Villa";
+    }, 5000);
+  } //   beforeMount() {
+  //     console.log("before mount");
+  //   },
+  //   mounted() {
+  //     console.log("mounted");
+  //   },
+  //   beforeDestroy() {
+  //     console.log("before destroy");
+  //   },
+  //   destroyed() {
+  //     console.log("destroy");
+  //   },
+
 });
 
 /***/ }),

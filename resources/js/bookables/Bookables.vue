@@ -31,23 +31,29 @@ export default {
       },
     };
   },
-  beforeCreate() {
-    console.log("before create");
-  },
+  //   beforeCreate() {
+  //     console.log("before create");
+  //   },
   created() {
     console.log("created");
+    console.log(this.bookable1);
+    console.log(this.bookable2);
+    setTimeout(() => {
+      this.bookable1.title = "Expensive Villa";
+      this.bookable2.title = "Very Expensive Villa";
+    }, 5000);
   },
-  beforeMount() {
-    console.log("before mount");
-  },
-  mounted() {
-    console.log("mounted");
-  },
-  beforeDestroy() {
-    console.log("before destroy");
-  },
-  destroyed() {
-    console.log("destroy");
-  },
+  //   beforeMount() {
+  //     console.log("before mount");
+  //   },
+  //   mounted() {
+  //     console.log("mounted");
+  //   },
+  //   beforeDestroy() {
+  //     console.log("before destroy");
+  //   },
+  //   destroyed() {
+  //     console.log("destroy");
+  //   },
 };
 </script>
