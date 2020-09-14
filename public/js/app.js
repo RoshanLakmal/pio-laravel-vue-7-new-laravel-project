@@ -1950,6 +1950,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1957,14 +1959,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      bookable1: {
-        title: "Cheap Villa 1",
-        content: "A very cheap villa 1"
-      },
-      bookable2: {
-        title: "Cheap Villa 2",
-        content: "A very cheap villa 2"
-      }
+      bookable1: null,
+      bookable2: null
     };
   },
   //   beforeCreate() {
@@ -1977,9 +1973,15 @@ __webpack_require__.r(__webpack_exports__);
     console.log(this.bookable1);
     console.log(this.bookable2);
     setTimeout(function () {
-      _this.bookable1.title = "Expensive Villa";
-      _this.bookable2.title = "Very Expensive Villa";
-    }, 5000);
+      _this.bookable1 = {
+        title: "Cheap Villa 1",
+        content: "A very cheap villa 1"
+      };
+      _this.bookable2 = {
+        title: "Cheap Villa 2",
+        content: "A very cheap villa 2"
+      };
+    }, 2000);
   } //   beforeMount() {
   //     console.log("before mount");
   //   },
@@ -37697,21 +37699,25 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("bookable-list-item", {
-        attrs: {
-          "item-title": _vm.bookable1.title,
-          "item-content": _vm.bookable1.content,
-          price: 1000
-        }
-      }),
+      _vm.bookable1
+        ? _c("bookable-list-item", {
+            attrs: {
+              "item-title": _vm.bookable1.title,
+              "item-content": _vm.bookable1.content,
+              price: 1000
+            }
+          })
+        : _vm._e(),
       _vm._v(" "),
-      _c("bookable-list-item", {
-        attrs: {
-          "item-title": _vm.bookable2.title,
-          "item-content": _vm.bookable2.content,
-          price: 1500
-        }
-      })
+      _vm.bookable2
+        ? _c("bookable-list-item", {
+            attrs: {
+              "item-title": _vm.bookable2.title,
+              "item-content": _vm.bookable2.content,
+              price: 1500
+            }
+          })
+        : _vm._e()
     ],
     1
   )

@@ -1,11 +1,13 @@
 <template>
   <div>
     <bookable-list-item
+      v-if="bookable1"
       :item-title="bookable1.title"
       :item-content="bookable1.content"
       :price="1000"
     ></bookable-list-item>
     <bookable-list-item
+      v-if="bookable2"
       :item-title="bookable2.title"
       :item-content="bookable2.content"
       :price="1500"
@@ -21,14 +23,8 @@ export default {
   },
   data() {
     return {
-      bookable1: {
-        title: "Cheap Villa 1",
-        content: "A very cheap villa 1",
-      },
-      bookable2: {
-        title: "Cheap Villa 2",
-        content: "A very cheap villa 2",
-      },
+      bookable1: null,
+      bookable2: null,
     };
   },
   //   beforeCreate() {
@@ -39,9 +35,15 @@ export default {
     console.log(this.bookable1);
     console.log(this.bookable2);
     setTimeout(() => {
-      this.bookable1.title = "Expensive Villa";
-      this.bookable2.title = "Very Expensive Villa";
-    }, 5000);
+      this.bookable1 = {
+        title: "Cheap Villa 1",
+        content: "A very cheap villa 1",
+      };
+      this.bookable2 = {
+        title: "Cheap Villa 2",
+        content: "A very cheap villa 2",
+      };
+    }, 2000);
   },
   //   beforeMount() {
   //     console.log("before mount");
