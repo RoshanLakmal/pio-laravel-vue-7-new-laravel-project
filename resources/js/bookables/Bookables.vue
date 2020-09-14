@@ -65,6 +65,17 @@ export default {
   //   },
   created() {
     this.loading = true;
+
+    const p = new Promise((resolve, reject) => {
+      console.log(resolve);
+      console.log(reject);
+      setTimeout(() => resolve("Hello"), 3000); // resove promise
+      // setTimeout(() => reject("Hello"), 3000); // reject promise
+    })
+      .then((result) => "Hello agin" + result)
+      .then((result) => console.log(`Success ${result}`))
+      .catch((result) => console.log(`Error ${result}`));
+    console.log(p);
     setTimeout(() => {
       this.bookables = [
         {
