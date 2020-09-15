@@ -10,6 +10,7 @@
           class="from-control from-control-sm"
           placeholder="Start date"
           v-model="from"
+          @keyup.enter="check"
         />
       </div>
       <div class="form-group col-md-6">
@@ -20,10 +21,12 @@
           class="from-control from-control-sm"
           placeholder="End date"
           v-model="to"
+          @keyup.enter="check"
         />
       </div>
     </div>
-    <button class="btn btn-secondary btn-block">Check!</button>
+    <button class="btn btn-secondary btn-block" @click="check">Check!</button>
+    <!-- <button class="btn btn-secondary btn-block" v-on:click="check">Check!</button> -->
   </div>
 </template>
 <script>
@@ -33,6 +36,11 @@ export default {
       from: null,
       to: null,
     };
+  },
+  methods: {
+    check() {
+      alert("I will check something now!");
+    },
   },
 };
 </script>
