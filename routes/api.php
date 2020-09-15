@@ -23,8 +23,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 /**Both are correct */
 // Route::get('bookables', 'App\Http\Controllers\Api\BookableController@index');
 // Route::get('bookables/{id}', 'App\Http\Controllers\Api\BookableController@show');
-Route::get('bookables', [BookableController::class, 'index']);
-Route::get('bookables/{id}', [BookableController::class, 'show']);
+// Route::get('bookables', [BookableController::class, 'index']);
+// Route::get('bookables/{id}', [BookableController::class, 'show']);
+
+/**But resource is much better */
+// Route::apiResource('bookables', 'App\Http\Controllers\Api\BookableController');
+// Route::apiResource('bookables', BookableController::class); //All 
+Route::apiResource('bookables', BookableController::class)->only([
+    'index', 'show'
+]);
 
 /**Using closure */
 // Route::get('bookables', function (Request $request) {
