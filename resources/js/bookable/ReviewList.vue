@@ -15,7 +15,7 @@
                     <div class="col-md-6">Roshan</div>
                     <div class="col-md-6 d-flex justify-content-end">
                         <star-rating
-                            :rating="review.rating"
+                            :value="review.rating"
                             class="fa-lg"
                         ></star-rating>
                     </div>
