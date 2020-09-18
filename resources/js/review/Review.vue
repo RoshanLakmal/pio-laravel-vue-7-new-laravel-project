@@ -17,6 +17,7 @@
                     cols="30"
                     rows="10"
                     class="from-control"
+                    v-model="review.content"
                 ></textarea>
             </div>
         </div>
@@ -32,6 +33,12 @@ export default {
                 content: null
             }
         };
+    },
+    created(){
+        //1. If review already exists (in reviews table by id)
+        
+        //2. Fetch a booking by a revew key
+        //3. Store the review
     }
     // methods: {
     //     onRatingChanged(rating) {
