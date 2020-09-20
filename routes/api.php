@@ -39,7 +39,7 @@ Route::apiResource('bookables', BookableController::class)->only([
 Route::get('bookables/{bookable}/availability', BookableAvailabilityController::class)->name('bookables.availability.show');
 Route::get('bookables/{bookable}/reviews', BookableReviewController::class)->name('bookables.reviews.index');
 Route::get('booking-by-review/{reviewKey}', BookingByReviewController::class)->name('booking.by-review.show');
-Route::apiResource('reviews', ReviewController::class)->only(['show']);
+Route::apiResource('reviews', ReviewController::class)->only(['show', 'store']);
 /**Using closure */
 // Route::get('bookables', function (Request $request) {
 //     return Bookable::all();
