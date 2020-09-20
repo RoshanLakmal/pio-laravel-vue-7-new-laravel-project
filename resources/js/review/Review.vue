@@ -42,7 +42,11 @@
                 ></textarea>
               </div>
             </div>
-            <button class="btn btn-lg btn-primary btn-block">Submit</button>
+            <button
+              class="btn btn-lg btn-primary btn-block"
+              @click.prevent="submit"
+              :disabled="loading"
+            >Submit</button>
           </div>
         </div>
       </div>
@@ -55,6 +59,7 @@ export default {
   data() {
     return {
       review: {
+        id: null,
         rating: 5,
         content: null,
       },
@@ -65,10 +70,11 @@ export default {
     };
   },
   created() {
+    this.review.id = this.$route.params.id;
     this.loading = true;
     //1. If review already exists (in reviews table by id)
     axios
-      .get(`/api/reviews/${this.$route.params.id}`)
+      .get(`/api/reviews/${this.review.id}`)
       .then((response) => {
         this.existingReview = response.data.data;
       })
@@ -76,7 +82,7 @@ export default {
         if (is404(err)) {
           //2. Fetch a booking by a revew key
           return axios
-            .get(`/api/booking-by-review/${this.$route.params.id}`)
+            .get(`/api/booking-by-review/${this.review.id}`)
             .then((response) => {
               this.booking = response.data.data;
             })
@@ -120,10 +126,18 @@ export default {
   twoColumn() {
     return !loading && alreadyReviewed;
   },
-  // methods: {
-  //     onRatingChanged(rating) {
-  //         console.log(rating);
-  //     }
-  // }
+  methods: {
+    submit() {
+      this.loading = true;
+      axios
+        .post(`/api/reviews`, this.review)
+        .then((response) => console.log(response))
+        .catch((err) => (this.error = true))
+        .then(() => (this.loading = false));
+    },
+    //   onRatingChanged(rating) {
+    //       console.log(rating);
+    //   }
+  },
 };
 </script>
