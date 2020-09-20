@@ -2348,13 +2348,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2363,7 +2356,8 @@ __webpack_require__.r(__webpack_exports__);
         content: null
       },
       existingReview: null,
-      loading: false
+      loading: false,
+      booking: null
     };
   },
   created: function created() {
@@ -2372,11 +2366,21 @@ __webpack_require__.r(__webpack_exports__);
     this.loading = true; //1. If review already exists (in reviews table by id)
 
     axios.get("/api/reviews/".concat(this.$route.params.id)).then(function (response) {
-      return _this.existingReview = response.data.data;
-    })["catch"](function (err) {//
+      _this.existingReview = response.data.data;
+    })["catch"](function (err) {
+      if (err.response && err.response.status && 404 === err.response.status) {
+        return axios.get("/api/booking-by-review/".concat(_this.$route.params.id)).then(function (response) {
+          _this.booking = response.data.data;
+        });
+      }
     }).then(function () {
-      return _this.loading = false;
-    }); //2. Fetch a booking by a revew key
+      _this.loading = false;
+    }); //   .then((response) => {
+    //     console.log(this.booking.booking_id);
+    //     console.log(response);
+    //     this.loading = false;
+    //   });
+    //2. Fetch a booking by a revew key
     //3. Store the review
   },
   computed: {
