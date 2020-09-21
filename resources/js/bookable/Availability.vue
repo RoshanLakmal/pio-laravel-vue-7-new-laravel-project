@@ -11,7 +11,7 @@
         <input
           type="text"
           name="from"
-          class="from-control from-control-sm"
+          class="form-control from-control-sm"
           placeholder="Start date"
           v-model="from"
           @keyup.enter="check"
@@ -24,7 +24,7 @@
         <input
           type="text"
           name="to"
-          class="from-control from-control-sm"
+          class="form-control from-control-sm"
           placeholder="End date"
           v-model="to"
           @keyup.enter="check"
@@ -39,7 +39,9 @@
 </template>
 <script>
 import { is422 } from "./../shared/utils/response";
+import validationErrors from "./../shared/mixins/validationErrors";
 export default {
+  mixins: [validationErrors],
   props: {
     bookableId: String,
   },
@@ -49,7 +51,7 @@ export default {
       to: null,
       loading: false,
       status: null,
-      errors: null,
+      // errors: null,
     };
   },
   methods: {
@@ -71,9 +73,9 @@ export default {
         })
         .then(() => (this.loading = false));
     },
-    errorFor(field) {
-      return this.hasErrors && this.errors[field] ? this.errors[field] : null;
-    },
+    // errorFor(field) {
+    //   return this.hasErrors && this.errors[field] ? this.errors[field] : null;
+    // },
   },
   computed: {
     hasErrors() {
