@@ -2018,6 +2018,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -61196,7 +61199,16 @@ var render = function() {
         attrs: { disabled: _vm.loading },
         on: { click: _vm.check }
       },
-      [_vm._v("\n        Check!\n    ")]
+      [
+        !_vm.loading ? _c("span", [_vm._v("Check!")]) : _vm._e(),
+        _vm._v(" "),
+        _vm.loading
+          ? _c("span", [
+              _c("i", { staticClass: "fas fa-circle-notch fa-spin" }),
+              _vm._v(" Checking...")
+            ])
+          : _vm._e()
+      ]
     )
   ])
 }
