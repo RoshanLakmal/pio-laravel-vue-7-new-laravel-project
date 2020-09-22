@@ -2036,7 +2036,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.loading = true;
       this.errors = null;
-      this.$store.commit("setLastSearch", {
+      this.$store.dispatch("setLastSearch", {
         from: this.from,
         to: this.to
       });
@@ -79303,6 +79303,12 @@ __webpack_require__.r(__webpack_exports__);
   mutations: {
     setLastSearch: function setLastSearch(state, payload) {
       state.lastSearch = payload;
+    }
+  },
+  actions: {
+    setLastSearch: function setLastSearch(context, payload) {
+      context.commit("setLastSearch", payload);
+      localStorage.setItem("lastSearch", JSON.stringify(payload));
     }
   }
 });
